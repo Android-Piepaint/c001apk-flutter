@@ -1,19 +1,12 @@
 # c001apk-flutter
 
-A new Flutter project.
+This is a fork of @bggRGjQaUbCoE's discontinued project [c001apk-flutter](https://github.com/bggRGjQaUbCoE/c001apk-flutter).
 
-## Getting Started
+For Arch Linux users, you can install it from [AUR](https://aur.archlinux.org/packages/c001apk-flutter-git):
 
-This project is a starting point for a Flutter application.
-
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+```shell
+[yay/paru] -S c001apk-flutter-git
+```
 
 ## Credits:
 - [pilipala](https://github.com/guozhigq/pilipala)
