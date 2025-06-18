@@ -30,8 +30,7 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: APK
-          path: |
-            build/app/outputs/flutter-apk/app-common-release.apk
+          path: build/app/outputs/flutter-apk/app-release.apk
 
   build-windows:
     name: Build Windows
