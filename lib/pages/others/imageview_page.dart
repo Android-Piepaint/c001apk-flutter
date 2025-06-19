@@ -191,8 +191,10 @@ class _ImageViewPageState extends State<ImageViewPage> {
                 },
                 icon: Icon(
                   Icons.arrow_forward,
-                  color:
-                      Theme.of(context).colorScheme.onSurface.withValues(alpha: 0.6),
+                  color: Theme.of(context)
+                      .colorScheme
+                      .onSurface
+                      .withValues(alpha: 0.6),
                 ),
                 style: IconButton.styleFrom(
                     backgroundColor: Theme.of(context)

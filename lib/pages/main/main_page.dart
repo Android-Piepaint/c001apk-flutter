@@ -124,7 +124,7 @@ class _MainPageState extends State<MainPage> {
                     selectedIndex: snapshot.data!,
                     onDestinationSelected: onDestinationSelected,
                     labelType: NavigationRailLabelType.none,
-		    extended: true,
+                    extended: true,
                   ),
                 ),
               if (!isPortait) const VerticalDivider(width: 1),
