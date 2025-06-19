@@ -52,6 +52,7 @@ jobs:
         with:
           name: Windows
           path: build/windows/x64/runner/Release/
+          compression-level: 9
 
   build-linux:
     name: Build Linux
@@ -76,6 +77,7 @@ jobs:
         with:
           name: Linux
           path: build/linux/x64/release/bundle/
+          compression-level: 9
 
   build-macos:
     name: Build macOS
@@ -97,3 +99,4 @@ jobs:
         with:
           name: macOS
           path: build/macos/Build/Products/Release/c001apk-flutter.app
+          compression-level: 9
