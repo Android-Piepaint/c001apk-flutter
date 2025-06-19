@@ -86,11 +86,14 @@ jobs:
         with:
           cache: true
 
+      - name: Install dependencies
+        run: flutter pub get
+
       - name: Build
         run: flutter build macos --release
 
       - name: Upload
         uses: actions/upload-artifact@v4
         with:
-          name: macOS ARM64
-          path: build/macos/Build/Products/Release/
+          name: macOS
+          path: build/macos/Build/Products/Release/c001apk-flutter.app
