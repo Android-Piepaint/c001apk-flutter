@@ -419,22 +419,17 @@ class Utils {
     dynamic dateArr = timeStr.split(' ')[0];
     dynamic timeArr = timeStr.split(' ')[1];
 
-    String YY = dateArr.split('-')[0];
-    String MM = dateArr.split('-')[1];
-    String DD = dateArr.split('-')[2];
+    var [year, month, day] = dateArr.split('-');
+    var [hour, minute, second] = timeArr.split(':');
 
-    String hh = timeArr.split(':')[0];
-    String mm = timeArr.split(':')[1];
-    String ss = timeArr.split(':')[2];
-
-    ss = ss.split('.')[0];
+    second = second.split('.')[0];
 
     // 去除0开头
     if (toInt) {
-      MM = (int.parse(MM)).toString();
-      DD = (int.parse(DD)).toString();
-      hh = (int.parse(hh)).toString();
-      mm = (int.parse(mm)).toString();
+      month = int.parse(month).toString();
+      day = int.parse(day).toString();
+      hour = int.parse(hour).toString();
+      minute = int.parse(minute).toString();
     }
 
     if (date == null) {
@@ -446,16 +441,16 @@ class Utils {
     // }
 
     date = date
-        .replaceAll('YY', YY)
-        .replaceAll('MM', MM)
-        .replaceAll('DD', DD)
-        .replaceAll('hh', hh)
-        .replaceAll('mm', mm)
-        .replaceAll('ss', ss);
-    if (int.parse(YY) == DateTime.now().year &&
-        int.parse(MM) == DateTime.now().month) {
+        .replaceAll('YY', year)
+        .replaceAll('MM', month)
+        .replaceAll('DD', day)
+        .replaceAll('hh', hour)
+        .replaceAll('mm', minute)
+        .replaceAll('ss', second);
+    if (int.parse(year) == DateTime.now().year &&
+        int.parse(month) == DateTime.now().month) {
       // 当天
-      if (int.parse(DD) == DateTime.now().day) {
+      if (int.parse(day) == DateTime.now().day) {
         return '今天';
       }
     }
