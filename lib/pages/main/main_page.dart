@@ -125,6 +125,7 @@ class _MainPageState extends State<MainPage> {
                     onDestinationSelected: onDestinationSelected,
                     labelType: NavigationRailLabelType.none,
                     extended: true,
+		    groupAlignment: -0.95,
                   ),
                 ),
               if (!isPortait) const VerticalDivider(width: 1),
