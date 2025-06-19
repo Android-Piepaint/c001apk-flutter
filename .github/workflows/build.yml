@@ -94,9 +94,12 @@ jobs:
       - name: Build
         run: flutter build macos --release
 
+      - name: Create Apple Disk Image (.dmg)
+        run: |
+          hdiutil create -format UDZO -srcfolder build/macos/Build/Products/Release/c001apk-flutter.app c001apk.dmg
+
       - name: Upload
         uses: actions/upload-artifact@v4
         with:
           name: macOS
-          path: build/macos/Build/Products/Release/c001apk-flutter.app
-          compression-level: 9
+          path: c001apk.dmg
