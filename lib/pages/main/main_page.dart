@@ -117,17 +117,19 @@ class _MainPageState extends State<MainPage> {
             body: Row(children: [
               if (!isPortait)
                 StreamBuilder(
-                  initialData: _selectedIndex,
-                  stream: _indexSctream.stream,
-                  builder: (_, snapshot) => NavigationRail(
-                    destinations: railDestinations,
-                    selectedIndex: snapshot.data!,
-                    onDestinationSelected: onDestinationSelected,
-                    labelType: NavigationRailLabelType.none,
-                    extended: true,
-		    groupAlignment: -0.95,
-                  ),
-                ),
+                    initialData: _selectedIndex,
+                    stream: _indexSctream.stream,
+                    builder: (_, snapshot) => Padding(
+                          padding: EdgeInsets.only(
+                              top: Platform.isMacOS ? 25.0 : 15.0),
+                          child: NavigationRail(
+                            destinations: railDestinations,
+                            selectedIndex: snapshot.data!,
+                            onDestinationSelected: onDestinationSelected,
+                            labelType: NavigationRailLabelType.none,
+                            extended: true,
+                          ),
+                        )),
               if (!isPortait) const VerticalDivider(width: 1),
               Expanded(
                 child: PageView(
