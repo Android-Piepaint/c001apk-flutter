@@ -14,5 +14,6 @@ You can install it from [AUR](https://aur.archlinux.org/packages/c001apk-flutter
 
 Download the zip archive file from [GitHub Action](https://github.com/Integral-Tech/c001apk-flutter/actions) and extract it.
 
-## Credits:
-- [pilipala](https://github.com/guozhigq/pilipala)
+## Credits
+- The original [c001apk-flutter](https://github.com/bggRGjQaUbCoE/c001apk-flutter)
+- [PiliPala](https://github.com/guozhigq/pilipala)
