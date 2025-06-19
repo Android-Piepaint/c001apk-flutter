@@ -447,13 +447,13 @@ class Utils {
         .replaceAll('hh', hour)
         .replaceAll('mm', minute)
         .replaceAll('ss', second);
+
     if (int.parse(year) == DateTime.now().year &&
-        int.parse(month) == DateTime.now().month) {
-      // 当天
-      if (int.parse(day) == DateTime.now().day) {
-        return '今天';
-      }
+        int.parse(month) == DateTime.now().month &&
+        int.parse(day) == DateTime.now().day) {
+      return '今天';
     }
+
     return date;
   }
 
