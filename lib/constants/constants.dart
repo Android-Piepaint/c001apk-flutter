@@ -39,7 +39,7 @@ class Constants {
   static const URL_COOLAPK = 'https://www.coolapk.com/';
   static const URL_LOGIN = 'https://account.coolapk.com/auth/login?type=mobile';
   static const URL_SOURCE_CODE =
-      'https://github.com/bggRGjQaUbCoE/c001apk-flutter';
+      'https://github.com/Integral-Tech/c001apk-flutter';
   static const URL_API_SERVICE = 'https://api.coolapk.com';
   static const URL_API2_SERVICE = 'https://api2.coolapk.com';
   static const URL_ACCOUNT_SERVICE = 'https://account.coolapk.com';
