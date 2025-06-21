@@ -130,13 +130,16 @@ class _MainPageState extends State<MainPage> {
                           ),
                         )),
               if (!Utils.isPortrait(context)) const VerticalDivider(width: 1),
+              if (Utils.isWideLandscape(context)) const Spacer(),
               Expanded(
                 child: PageView(
                   physics: const NeverScrollableScrollPhysics(),
                   controller: _contrller,
                   children: pages,
                 ),
+                flex: 8,
               ),
+              if (Utils.isWideLandscape(context)) const Spacer(),
             ]),
             bottomNavigationBar: Utils.isPortrait(context)
                 ? StreamBuilder(

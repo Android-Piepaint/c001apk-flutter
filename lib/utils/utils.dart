@@ -35,6 +35,10 @@ class Utils {
     return MediaQuery.sizeOf(context).aspectRatio <= 1.0;
   }
 
+  static bool isWideLandscape(BuildContext context) {
+    return MediaQuery.sizeOf(context).aspectRatio >= 1.5;
+  }
+
   static String getFollowTitle(int index) {
     return switch (index) {
       1 => '好友关注',
