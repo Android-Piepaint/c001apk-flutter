@@ -211,8 +211,8 @@ class _LoginPageState extends State<LoginPage> {
               textInputAction: TextInputAction.next,
               onSubmitted: (value) => _pwdFocusNode.requestFocus(),
               decoration: InputDecoration(
-                border: const UnderlineInputBorder(),
-                filled: true,
+                prefixIcon: Icon(Icons.person),
+                border: const OutlineInputBorder(),
                 labelText: '账号',
                 suffixIcon: StreamBuilder(
                   stream: _showClearAccount.stream,
@@ -228,7 +228,7 @@ class _LoginPageState extends State<LoginPage> {
                 ),
               ),
             ),
-            const SizedBox(height: 10),
+            const SizedBox(height: 20),
             StreamBuilder(
               initialData: false,
               stream: _showPasswordStream.stream,
@@ -246,8 +246,8 @@ class _LoginPageState extends State<LoginPage> {
                   }
                 },
                 decoration: InputDecoration(
-                  border: const UnderlineInputBorder(),
-                  filled: true,
+                  prefixIcon: Icon(Icons.password),
+                  border: const OutlineInputBorder(),
                   labelText: '密码',
                   suffixIcon: IconButton(
                     icon: Icon(
@@ -316,7 +316,7 @@ class _LoginPageState extends State<LoginPage> {
                     )
                   : const SizedBox.shrink(),
             ),
-            const SizedBox(height: 10),
+            const SizedBox(height: 20),
             StreamBuilder(
               stream: _enableLogin.stream,
               builder: (_, snapshot) => FilledButton.tonal(
