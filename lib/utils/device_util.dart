@@ -108,7 +108,8 @@ class DeviceUtil {
       '11',
       '12',
       '13',
-      '14'
+      '14',
+      '15'
     ];
     return androidVersionReleases[
         Random().nextInt(androidVersionReleases.length)];
