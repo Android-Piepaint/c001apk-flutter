@@ -18,6 +18,7 @@ import '../constants/constants.dart';
 import '../logic/network/network_repo.dart';
 import '../pages/ffflist/ffflist_page.dart' show FFFListType;
 import '../utils/extensions.dart';
+import '../utils/cache_util.dart';
 import '../utils/storage_util.dart';
 
 // ignore: constant_identifier_names
@@ -87,7 +88,7 @@ class Utils {
     SmartDialog.showLoading();
     var response = await Dio()
         .get(url, options: Options(responseType: ResponseType.bytes));
-    final temp = await getTemporaryDirectory();
+    final temp = await CacheManage.getAppTempDirectory();
     SmartDialog.dismiss();
     final String imgName = url.split('/').last;
     var path = '${temp.path}/$imgName';
