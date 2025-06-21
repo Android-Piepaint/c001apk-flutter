@@ -201,134 +201,146 @@ class _LoginPageState extends State<LoginPage> {
       ),
       body: Padding(
         padding: const EdgeInsets.all(20),
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            TextField(
-              controller: _accountController,
-              autofocus: true,
-              onChanged: (value) => _showClearAccount.add(value.isNotEmpty),
-              textInputAction: TextInputAction.next,
-              onSubmitted: (value) => _pwdFocusNode.requestFocus(),
-              decoration: InputDecoration(
-                prefixIcon: Icon(Icons.person),
-                border: const OutlineInputBorder(),
-                labelText: '账号',
-                suffixIcon: StreamBuilder(
-                  stream: _showClearAccount.stream,
-                  builder: (_, snapshot) => snapshot.data == true
-                      ? IconButton(
-                          icon: const Icon(Icons.cancel),
-                          onPressed: () {
-                            _accountController.clear();
-                            _showClearAccount.add(false);
-                          },
-                        )
-                      : const SizedBox.shrink(),
-                ),
-              ),
-            ),
-            const SizedBox(height: 20),
-            StreamBuilder(
-              initialData: false,
-              stream: _showPasswordStream.stream,
-              builder: (_, snapshot) => TextField(
-                focusNode: _pwdFocusNode,
-                controller: _pwdController,
-                obscureText: !snapshot.data!,
-                textInputAction:
-                    _showCaptcha ? TextInputAction.next : TextInputAction.done,
-                onSubmitted: (value) {
-                  if (_showCaptcha) {
-                    _captchaFocusNode.requestFocus();
-                  } else {
-                    _beforeLogin();
-                  }
-                },
-                decoration: InputDecoration(
-                  prefixIcon: Icon(Icons.password),
-                  border: const OutlineInputBorder(),
-                  labelText: '密码',
-                  suffixIcon: IconButton(
-                    icon: Icon(
-                      snapshot.data == true
-                          ? Icons.visibility_off
-                          : Icons.visibility,
+        child: Align(
+          alignment: Utils.isPortrait(context)
+              ? Alignment.topCenter
+              : Alignment.center,
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              SizedBox(
+                width: 500.0,
+                child: TextField(
+                  controller: _accountController,
+                  autofocus: true,
+                  onChanged: (value) => _showClearAccount.add(value.isNotEmpty),
+                  textInputAction: TextInputAction.next,
+                  onSubmitted: (value) => _pwdFocusNode.requestFocus(),
+                  decoration: InputDecoration(
+                    prefixIcon: Icon(Icons.person),
+                    border: const OutlineInputBorder(),
+                    labelText: '账号',
+                    suffixIcon: StreamBuilder(
+                      stream: _showClearAccount.stream,
+                      builder: (_, snapshot) => snapshot.data == true
+                          ? IconButton(
+                              icon: const Icon(Icons.cancel),
+                              onPressed: () {
+                                _accountController.clear();
+                                _showClearAccount.add(false);
+                              },
+                            )
+                          : const SizedBox.shrink(),
                     ),
-                    onPressed: () {
-                      _showPassword = !_showPassword;
-                      _showPasswordStream.add(_showPassword);
-                    },
                   ),
                 ),
               ),
-            ),
-            StreamBuilder(
-              stream: _captchaImg.stream,
-              builder: (_, snapshot) => snapshot.data != null
-                  ? Padding(
-                      padding: const EdgeInsets.only(top: 10),
-                      child: Row(
-                        children: [
-                          Expanded(
-                            flex: 1,
-                            child: GestureDetector(
-                              onTap: () => _onGetCaptcha(),
-                              child: Image.memory(snapshot.data!),
+              const SizedBox(height: 20),
+              StreamBuilder(
+                initialData: false,
+                stream: _showPasswordStream.stream,
+                builder: (_, snapshot) => SizedBox(
+                  width: 500.0,
+                  child: TextField(
+                    focusNode: _pwdFocusNode,
+                    controller: _pwdController,
+                    obscureText: !snapshot.data!,
+                    textInputAction: _showCaptcha
+                        ? TextInputAction.next
+                        : TextInputAction.done,
+                    onSubmitted: (value) {
+                      if (_showCaptcha) {
+                        _captchaFocusNode.requestFocus();
+                      } else {
+                        _beforeLogin();
+                      }
+                    },
+                    decoration: InputDecoration(
+                      prefixIcon: Icon(Icons.password),
+                      border: const OutlineInputBorder(),
+                      labelText: '密码',
+                      suffixIcon: IconButton(
+                        icon: Icon(
+                          snapshot.data == true
+                              ? Icons.visibility_off
+                              : Icons.visibility,
+                        ),
+                        onPressed: () {
+                          _showPassword = !_showPassword;
+                          _showPasswordStream.add(_showPassword);
+                        },
+                      ),
+                    ),
+                  ),
+                ),
+              ),
+              StreamBuilder(
+                stream: _captchaImg.stream,
+                builder: (_, snapshot) => snapshot.data != null
+                    ? Padding(
+                        padding: const EdgeInsets.only(top: 10),
+                        child: Row(
+                          children: [
+                            Expanded(
+                              flex: 1,
+                              child: GestureDetector(
+                                onTap: () => _onGetCaptcha(),
+                                child: Image.memory(snapshot.data!),
+                              ),
                             ),
-                          ),
-                          Expanded(
-                            flex: 1,
-                            child: TextField(
-                              controller: _captchaController,
-                              focusNode: _captchaFocusNode,
-                              inputFormatters: [
-                                LengthLimitingTextInputFormatter(4),
-                                FilteringTextInputFormatter.allow(
-                                    RegExp("[0-9a-zA-Z]")),
-                              ],
-                              textInputAction: TextInputAction.done,
-                              onSubmitted: (value) => _beforeLogin(),
-                              onChanged: (value) =>
-                                  _showClearCaptcha.add(value.isNotEmpty),
-                              decoration: InputDecoration(
-                                border: const UnderlineInputBorder(),
-                                filled: true,
-                                labelText: 'captcha',
-                                suffixIcon: StreamBuilder(
-                                  stream: _showClearCaptcha.stream,
-                                  builder: (_, snapshot) =>
-                                      snapshot.data == true
-                                          ? IconButton(
-                                              icon: const Icon(Icons.cancel),
-                                              onPressed: () {
-                                                _showClearCaptcha.add(false);
-                                                _captchaController.clear();
-                                              },
-                                            )
-                                          : const SizedBox.shrink(),
+                            Expanded(
+                              flex: 1,
+                              child: TextField(
+                                controller: _captchaController,
+                                focusNode: _captchaFocusNode,
+                                inputFormatters: [
+                                  LengthLimitingTextInputFormatter(4),
+                                  FilteringTextInputFormatter.allow(
+                                      RegExp("[0-9a-zA-Z]")),
+                                ],
+                                textInputAction: TextInputAction.done,
+                                onSubmitted: (value) => _beforeLogin(),
+                                onChanged: (value) =>
+                                    _showClearCaptcha.add(value.isNotEmpty),
+                                decoration: InputDecoration(
+                                  border: const UnderlineInputBorder(),
+                                  filled: true,
+                                  labelText: 'captcha',
+                                  suffixIcon: StreamBuilder(
+                                    stream: _showClearCaptcha.stream,
+                                    builder: (_, snapshot) =>
+                                        snapshot.data == true
+                                            ? IconButton(
+                                                icon: const Icon(Icons.cancel),
+                                                onPressed: () {
+                                                  _showClearCaptcha.add(false);
+                                                  _captchaController.clear();
+                                                },
+                                              )
+                                            : const SizedBox.shrink(),
+                                  ),
                                 ),
                               ),
                             ),
-                          ),
-                        ],
-                      ),
-                    )
-                  : const SizedBox.shrink(),
-            ),
-            const SizedBox(height: 20),
-            StreamBuilder(
-              stream: _enableLogin.stream,
-              builder: (_, snapshot) => FilledButton.tonal(
-                onPressed: snapshot.data == true
-                    ? () {
-                        _beforeLogin();
-                      }
-                    : null,
-                child: const Text('登录'),
+                          ],
+                        ),
+                      )
+                    : const SizedBox.shrink(),
               ),
-            ),
-          ],
+              const SizedBox(height: 20),
+              StreamBuilder(
+                stream: _enableLogin.stream,
+                builder: (_, snapshot) => FilledButton.tonal(
+                  onPressed: snapshot.data == true
+                      ? () {
+                          _beforeLogin();
+                        }
+                      : null,
+                  child: const Text('登录'),
+                ),
+              ),
+            ],
+          ),
         ),
       ),
     );
