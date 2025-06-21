@@ -120,7 +120,7 @@ class _MainPageState extends State<MainPage> {
                     stream: _indexSctream.stream,
                     builder: (_, snapshot) => Padding(
                           padding: EdgeInsets.only(
-                              top: Platform.isMacOS ? 25.0 : 15.0),
+                              top: Platform.isMacOS ? 25.0 : 10.0),
                           child: NavigationRail(
                             destinations: railDestinations,
                             selectedIndex: snapshot.data!,
