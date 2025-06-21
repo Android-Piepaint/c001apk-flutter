@@ -199,7 +199,7 @@ class _FeedPageState extends State<FeedPage> with TickerProviderStateMixin {
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
-            const Divider(height: 1),
+            if (!Utils.isWideLandscape(context)) const Divider(height: 1),
             Padding(
               padding: const EdgeInsets.symmetric(vertical: 4),
               child: Row(
@@ -561,21 +561,52 @@ class _FeedPageState extends State<FeedPage> with TickerProviderStateMixin {
                   _feedController.onReset();
                   await _feedController.onGetData();
                 },
-                child: CustomScrollView(
-                  controller: _scrollController,
-                  physics: const AlwaysScrollableScrollPhysics(
-                    parent: BouncingScrollPhysics(),
-                  ),
-                  slivers: [
-                    _feedController.articleList.isNullOrEmpty
-                        ? SliverToBoxAdapter(
-                            child: _buildFeedContent(
-                                _feedController.feedState.value))
-                        : _buildFeedContent(_feedController.feedState.value),
-                    _buildPinWidget(),
-                    _buildFeedReply(_feedController.loadingState.value),
-                  ],
-                ),
+                child: Utils.isWideLandscape(context)
+                    ? Row(children: [
+                        Expanded(
+                            child: CustomScrollView(
+                          controller: _scrollController,
+                          physics: const AlwaysScrollableScrollPhysics(
+                            parent: BouncingScrollPhysics(),
+                          ),
+                          slivers: [
+                            _feedController.articleList.isNullOrEmpty
+                                ? SliverToBoxAdapter(
+                                    child: _buildFeedContent(
+                                        _feedController.feedState.value))
+                                : _buildFeedContent(
+                                    _feedController.feedState.value),
+                          ],
+                        )),
+                        const VerticalDivider(width: 1),
+                        Expanded(
+                            child: CustomScrollView(
+                          controller: _scrollController,
+                          physics: const AlwaysScrollableScrollPhysics(
+                            parent: BouncingScrollPhysics(),
+                          ),
+                          slivers: [
+                            _buildPinWidget(),
+                            _buildFeedReply(_feedController.loadingState.value),
+                          ],
+                        )),
+                      ])
+                    : CustomScrollView(
+                        controller: _scrollController,
+                        physics: const AlwaysScrollableScrollPhysics(
+                          parent: BouncingScrollPhysics(),
+                        ),
+                        slivers: [
+                          _feedController.articleList.isNullOrEmpty
+                              ? SliverToBoxAdapter(
+                                  child: _buildFeedContent(
+                                      _feedController.feedState.value))
+                              : _buildFeedContent(
+                                  _feedController.feedState.value),
+                          _buildPinWidget(),
+                          _buildFeedReply(_feedController.loadingState.value),
+                        ],
+                      ),
               )
             : Center(child: _buildFeedContent(_feedController.feedState.value)),
       ),
