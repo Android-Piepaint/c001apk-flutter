@@ -132,12 +132,12 @@ class _MainPageState extends State<MainPage> {
               if (!Utils.isPortrait(context)) const VerticalDivider(width: 1),
               if (Utils.isWideLandscape(context)) const Spacer(),
               Expanded(
+                flex: 8,
                 child: PageView(
                   physics: const NeverScrollableScrollPhysics(),
                   controller: _contrller,
                   children: pages,
                 ),
-                flex: 8,
               ),
               if (Utils.isWideLandscape(context)) const Spacer(),
             ]),

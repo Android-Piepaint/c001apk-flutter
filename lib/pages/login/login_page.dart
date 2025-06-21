@@ -217,7 +217,7 @@ class _LoginPageState extends State<LoginPage> {
                   textInputAction: TextInputAction.next,
                   onSubmitted: (value) => _pwdFocusNode.requestFocus(),
                   decoration: InputDecoration(
-                    prefixIcon: Icon(Icons.person),
+                    prefixIcon: const Icon(Icons.person),
                     border: const OutlineInputBorder(),
                     labelText: '账号',
                     suffixIcon: StreamBuilder(
@@ -256,7 +256,7 @@ class _LoginPageState extends State<LoginPage> {
                       }
                     },
                     decoration: InputDecoration(
-                      prefixIcon: Icon(Icons.password),
+                      prefixIcon: const Icon(Icons.password),
                       border: const OutlineInputBorder(),
                       labelText: '密码',
                       suffixIcon: IconButton(
