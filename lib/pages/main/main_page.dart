@@ -13,6 +13,7 @@ import '../../pages/main/main_controller.dart';
 import '../../pages/message/message_page.dart';
 import '../../pages/settings/settings_page.dart';
 import '../../utils/storage_util.dart';
+import '../../utils/utils.dart';
 
 class MainPage extends StatefulWidget {
   const MainPage({super.key});
@@ -110,12 +111,10 @@ class _MainPageState extends State<MainPage> {
         onBackPressed();
       },
       child: LayoutBuilder(
-        builder: (_, constriants) {
-          bool isPortait = constriants.maxHeight > constriants.maxWidth;
-
+        builder: (context, _) {
           return Scaffold(
             body: Row(children: [
-              if (!isPortait)
+              if (!Utils.isPortrait(context))
                 StreamBuilder(
                     initialData: _selectedIndex,
                     stream: _indexSctream.stream,
@@ -130,7 +129,7 @@ class _MainPageState extends State<MainPage> {
                             extended: true,
                           ),
                         )),
-              if (!isPortait) const VerticalDivider(width: 1),
+              if (!Utils.isPortrait(context)) const VerticalDivider(width: 1),
               Expanded(
                 child: PageView(
                   physics: const NeverScrollableScrollPhysics(),
@@ -139,7 +138,7 @@ class _MainPageState extends State<MainPage> {
                 ),
               ),
             ]),
-            bottomNavigationBar: isPortait
+            bottomNavigationBar: Utils.isPortrait(context)
                 ? StreamBuilder(
                     initialData: _selectedIndex,
                     stream: _indexSctream.stream,

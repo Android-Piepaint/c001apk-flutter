@@ -1,8 +1,8 @@
 import 'dart:io';
 
 import 'package:dio/dio.dart';
-import "package:flutter/foundation.dart";
 import 'package:flutter/services.dart';
+import "package:flutter/widgets.dart";
 import 'package:flutter_smart_dialog/flutter_smart_dialog.dart';
 import 'package:get/get.dart';
 import 'package:path_provider/path_provider.dart';
@@ -30,6 +30,10 @@ class Utils {
 
   static bool isDesktop =
       Platform.isMacOS || Platform.isLinux || Platform.isWindows;
+
+  static bool isPortrait(BuildContext context) {
+    return MediaQuery.sizeOf(context).aspectRatio <= 1.0;
+  }
 
   static String getFollowTitle(int index) {
     return switch (index) {
