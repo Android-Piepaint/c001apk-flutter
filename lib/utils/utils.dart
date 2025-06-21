@@ -36,7 +36,7 @@ class Utils {
   }
 
   static bool isWideLandscape(BuildContext context) {
-    return MediaQuery.sizeOf(context).aspectRatio >= 1.5;
+    return MediaQuery.sizeOf(context).aspectRatio > 1.25;
   }
 
   static String getFollowTitle(int index) {
