@@ -4,10 +4,16 @@ This is a fork of @bggRGjQaUbCoE's discontinued project [c001apk-flutter](https:
 
 ## Arch Linux
 
-You can install it from [AUR](https://aur.archlinux.org/packages/c001apk-flutter-git):
+### [AUR](https://aur.archlinux.org/packages/c001apk-flutter-git)
 
 ```shell
 [yay/paru] -S c001apk-flutter-git
+```
+
+### [archlinuxcn](https://github.com/archlinuxcn/repo/tree/master/archlinuxcn/c001apk-flutter-git)
+
+```shell
+sudo pacman -S c001apk-flutter-git
 ```
 
 ## Other Linux distros, Android, Windows & macOS
