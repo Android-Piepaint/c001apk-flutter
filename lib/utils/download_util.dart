@@ -5,10 +5,9 @@ import 'package:device_info_plus/device_info_plus.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_smart_dialog/flutter_smart_dialog.dart';
-import 'package:path_provider/path_provider.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'package:saver_gallery/saver_gallery.dart';
-import 'package:xdg_desktop_portal/xdg_desktop_portal.dart';
+import 'package:file_picker/file_picker.dart';
 
 import '../utils/utils.dart';
 
@@ -95,22 +94,15 @@ class DownloadUtils {
         final String picName = urlList[index].split('/').last;
 
         if (Utils.isDesktop) {
-          String filePath = "";
-          if (Platform.isLinux) {
-            var client = XdgDesktopPortalClient();
-            var result = await client.fileChooser
-                .saveFile(title: 'Save File', currentName: picName)
-                .first;
+          String? filePath = await FilePicker.platform.saveFile(
+            dialogTitle: 'Save File',
+            fileName: picName,
+            type: FileType.image,
+          );
 
-            // Remove the 'file://' prefix
-            filePath = result.uris[0].substring(7);
-          } else {
-            Directory? downloadsDirectory = await getDownloadsDirectory();
-            if (downloadsDirectory == null) {
-              return;
-            }
-
-            filePath = '${downloadsDirectory.path}/$picName';
+          if (filePath == null) {
+            SmartDialog.dismiss();
+            return;
           }
 
           File(filePath).writeAsBytesSync(response.data);
