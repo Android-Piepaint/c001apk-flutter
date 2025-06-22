@@ -5,8 +5,12 @@ import 'package:device_info_plus/device_info_plus.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_smart_dialog/flutter_smart_dialog.dart';
+import 'package:path_provider/path_provider.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'package:saver_gallery/saver_gallery.dart';
+import 'package:xdg_desktop_portal/xdg_desktop_portal.dart';
+
+import '../utils/utils.dart';
 
 /// From Pilipala
 class DownloadUtils {
@@ -77,32 +81,56 @@ class DownloadUtils {
         if (!await requestStoragePer()) {
           return;
         }
-      } else {
+      } else if (Platform.isAndroid || Platform.isIOS) {
         if (!await requestPhotoPer()) {
           return;
         }
       }
+
       SmartDialog.showLoading(msg: '保存中');
       Dio dio = Dio();
       for (int index = 0; index < urlList.length; index++) {
         final Response response = await dio.get(urlList[index],
             options: Options(responseType: ResponseType.bytes));
         final String picName = urlList[index].split('/').last;
-        final SaveResult result = await SaverGallery.saveImage(
-          Uint8List.fromList(response.data),
-          name: picName,
-          androidRelativePath: "Pictures/c001apk-flutter",
-          androidExistNotSave: true,
-        );
-        if (result.errorMessage != null) {
-          SmartDialog.dismiss();
-          SmartDialog.showToast('${index + 1}: ${result.errorMessage}');
+
+        if (Utils.isDesktop) {
+          String filePath = "";
+          if (Platform.isLinux) {
+            var client = XdgDesktopPortalClient();
+            var result = await client.fileChooser
+                .saveFile(title: 'Save File', currentName: picName)
+                .first;
+
+            // Remove the 'file://' prefix
+            filePath = result.uris[0].substring(7);
+          } else {
+            Directory? downloadsDirectory = await getDownloadsDirectory();
+            if (downloadsDirectory == null) {
+              return;
+            }
+
+            filePath = '${downloadsDirectory.path}/${picName}';
+          }
+
+          File(filePath).writeAsBytesSync(response.data);
+        } else {
+          final SaveResult result = await SaverGallery.saveImage(
+            Uint8List.fromList(response.data),
+            name: picName,
+            androidRelativePath: "Pictures/c001apk-flutter",
+            androidExistNotSave: true,
+          );
+
+          if (result.errorMessage != null) {
+            SmartDialog.dismiss();
+            SmartDialog.showToast('${index + 1}: ${result.errorMessage}');
+          }
         }
+
         if (index == urlList.length - 1) {
           SmartDialog.dismiss();
-          if (result.isSuccess) {
-            SmartDialog.showToast('已保存');
-          }
+          SmartDialog.showToast('已保存');
         }
       }
     } catch (err) {
