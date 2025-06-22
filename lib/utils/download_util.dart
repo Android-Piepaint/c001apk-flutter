@@ -95,7 +95,7 @@ class DownloadUtils {
 
         if (Utils.isDesktop) {
           String? filePath = await FilePicker.platform.saveFile(
-            dialogTitle: 'Save File',
+            dialogTitle: 'Save Image',
             fileName: picName,
             type: FileType.image,
           );
