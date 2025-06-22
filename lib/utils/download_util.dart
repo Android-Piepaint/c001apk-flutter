@@ -110,7 +110,7 @@ class DownloadUtils {
               return;
             }
 
-            filePath = '${downloadsDirectory.path}/${picName}';
+            filePath = '${downloadsDirectory.path}/$picName';
           }
 
           File(filePath).writeAsBytesSync(response.data);
