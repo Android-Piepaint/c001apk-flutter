@@ -307,12 +307,3 @@ extension ThemeDataExt on ThemeData {
 
   Color get secondary => colorScheme.secondary;
 }
-
-extension StateExt on State {
-  void setSafeState(VoidCallback cb) {
-    if (mounted) {
-      // ignore: invalid_use_xof_protected_member
-      setState(cb);
-    }
-  }
-}
