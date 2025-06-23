@@ -36,7 +36,7 @@ class UserInfoCard extends StatelessWidget {
                 GestureDetector(
                   onTap: () {
                     Map<dynamic, dynamic> arguments = {
-                      "imgList": [data.cover.toString()],
+                      "imgList": [data.cover],
                     };
                     Get.toNamed('/imageview', arguments: arguments);
                   },
@@ -70,7 +70,7 @@ class UserInfoCard extends StatelessWidget {
               child: GestureDetector(
                 onTap: () {
                   Map<dynamic, dynamic> arguments = {
-                    "imgList": [data.userAvatar.toString()],
+                    "imgList": [data.userAvatar],
                   };
                   Get.toNamed('/imageview', arguments: arguments);
                 },
