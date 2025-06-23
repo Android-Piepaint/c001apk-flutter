@@ -148,7 +148,7 @@ class UserInfoCard extends StatelessWidget {
           ],
         ),
         Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 20),
+          padding: const EdgeInsets.only(left: 20, top: 10),
           child: GestureDetector(
             onTap: () =>
                 Utils.copyText(data.userInfo?.username ?? data.username ?? ''),
