@@ -34,7 +34,7 @@ class _ImageViewPageState extends State<ImageViewPage> {
     super.initState();
     int initialPage = Get.arguments['initialPage'] ?? 0;
     _initialPage = initialPage < 0 ? 0 : initialPage;
-    _imgList = Get.arguments['imgList'] ?? [];
+    _imgList = List.from(Get.arguments['imgList']);
   }
 
   @override
