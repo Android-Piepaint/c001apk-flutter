@@ -164,7 +164,7 @@ class UserInfoCard extends StatelessWidget {
           ),
         ),
         Padding(
-          padding: const EdgeInsets.only(left: 20, top: 4, right: 20),
+          padding: const EdgeInsets.only(left: 20, top: 4),
           child: Row(
             children: [
               GestureDetector(
@@ -204,11 +204,11 @@ class UserInfoCard extends StatelessWidget {
           ),
         ),
         Padding(
-          padding: const EdgeInsets.only(left: 20, top: 4, right: 20),
+          padding: const EdgeInsets.only(left: 20, top: 4),
           child: Text((data.bio?.isEmpty ?? true) ? '这个人很懒，什么都没写' : data.bio!),
         ),
         Padding(
-          padding: const EdgeInsets.only(left: 20, top: 4, right: 20),
+          padding: const EdgeInsets.only(left: 20, top: 4),
           child: Row(
             children: [
               Text.rich(
@@ -263,7 +263,7 @@ class UserInfoCard extends StatelessWidget {
           ),
         ),
         Padding(
-            padding: const EdgeInsets.only(left: 20, top: 4, right: 20),
+            padding: const EdgeInsets.only(left: 20, top: 4),
             child: Row(
               children: [
                 Icon(data.gender == 1 ? Icons.male : Icons.female, size: 20.0),
