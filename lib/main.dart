@@ -26,9 +26,9 @@ void main() async {
     await windowManager.ensureInitialized();
     WindowOptions windowOptions = WindowOptions(
       minimumSize: const Size(400, 700),
-      size: const Size(400, 700),
       center: true,
       skipTaskbar: false,
+      title: 'c001apk',
       titleBarStyle:
           Platform.isMacOS ? TitleBarStyle.hidden : TitleBarStyle.normal,
     );
