@@ -55,7 +55,7 @@ class HistoryController extends GetxController {
     dataList.value = <Datum>[];
   }
 
-  onDeleteFeed(dynamic id) {
+  void onDeleteFeed(dynamic id) {
     GStorage.onDeleteFeed(
       id.toString(),
       isHistory: type == HistoryType.History,

@@ -60,8 +60,8 @@ class Utils {
     };
   }
 
-  static String getShareUrl(String id, ShareType type) {
-    return 'https://www.coolapk1s.com/${type.name}/$id';
+  static Uri getShareUri(String id, ShareType type) {
+    return Uri.https('www.coolapk1s.com', '${type.name}/$id');
   }
 
   static void report(dynamic id, ReportType reportType) {
@@ -92,7 +92,7 @@ class Utils {
     final String imgName = url.split('/').last;
     var path = '${temp.path}/$imgName';
     File(path).writeAsBytesSync(response.data);
-    Share.shareXFiles([XFile(path)], subject: url);
+    SharePlus.instance.share(ShareParams(files: [XFile(path)], subject: url));
   }
 
   static void copyText(String text) {
@@ -300,7 +300,7 @@ class Utils {
   //   );
   // }
 
-  static launchURL(String url) async {
+  static void launchURL(String url) async {
     try {
       final Uri uri = Uri.parse(url);
       if (!await launchUrl(uri)) {
@@ -351,7 +351,7 @@ class Utils {
   }
 
   // 完全相对时间显示
-  static String formatTimestampToRelativeTime(timeStamp) {
+  static String formatTimestampToRelativeTime(int timeStamp) {
     var difference = DateTime.now()
         .difference(DateTime.fromMillisecondsSinceEpoch(timeStamp * 1000));
 
@@ -371,8 +371,8 @@ class Utils {
   }
 
   // 时间显示，刚刚，x分钟前
-  static String dateFormat(timeStamp, {formatType = 'list'}) {
-    if (timeStamp == 0 || timeStamp == null || timeStamp == '') {
+  static String dateFormat(int timeStamp, {String formatType = 'list'}) {
+    if (timeStamp == 0) {
       return '';
     }
     // 当前时间
@@ -465,7 +465,7 @@ class Utils {
     return date;
   }
 
-  static String makeHeroTag(v) {
+  static String makeHeroTag(dynamic v) {
     return v.toString() + random.nextInt(9999).toString();
   }
 
@@ -518,7 +518,7 @@ class Utils {
   }
 
   // 版本对比
-  static bool needUpdate(localVersion, remoteVersion) {
+  static bool needUpdate(String localVersion, String remoteVersion) {
     List<String> localVersionList = localVersion.split('.');
     List<String> remoteVersionList = remoteVersion.split('v')[1].split('.');
     for (int i = 0; i < localVersionList.length; i++) {
@@ -534,7 +534,7 @@ class Utils {
   }
 
   // 时间戳转时间
-  static tampToSeektime(number) {
+  static String stampToSeektime(int number) {
     int hours = number ~/ 60;
     int minutes = number % 60;
 

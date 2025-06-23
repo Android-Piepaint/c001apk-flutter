@@ -428,7 +428,7 @@ class _ChatPageState extends State<ChatPage> {
     );
   }
 
-  updatePanelType(PanelType type) async {
+  void updatePanelType(PanelType type) async {
     final isSwitchToKeyboard = PanelType.keyboard == type;
     final isSwitchToEmojiPanel = PanelType.emoji == type;
     bool isUpdated = false;
@@ -465,7 +465,7 @@ class _ChatPageState extends State<ChatPage> {
     }
   }
 
-  hidePanel() async {
+  void hidePanel() async {
     if (_focusNode.hasFocus) {
       await Future.delayed(const Duration(milliseconds: 100));
       _focusNode.unfocus();

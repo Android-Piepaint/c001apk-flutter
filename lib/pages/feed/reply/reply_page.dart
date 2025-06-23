@@ -477,7 +477,7 @@ class _ReplyPageState extends State<ReplyPage>
     );
   }
 
-  updatePanelType(PanelType type) async {
+  void updatePanelType(PanelType type) async {
     final isSwitchToKeyboard = PanelType.keyboard == type;
     final isSwitchToEmojiPanel = PanelType.emoji == type;
     bool isUpdated = false;
@@ -514,7 +514,7 @@ class _ReplyPageState extends State<ReplyPage>
     }
   }
 
-  hidePanel() async {
+  void hidePanel() async {
     if (_focusNode.hasFocus) {
       await Future.delayed(const Duration(milliseconds: 100));
       _focusNode.unfocus();

@@ -142,12 +142,12 @@ class _BlackListPageState extends State<BlackListPage> {
                     );
                   } else {
                     try {
-                      await Share.shareXFiles([
+                      await SharePlus.instance.share(ShareParams(files: [
                         XFile.fromData(utf8.encode(data),
                             mimeType: 'text/plain')
                       ], fileNameOverrides: [
                         fileName
-                      ]);
+                      ]));
                       SmartDialog.showToast('导出成功');
                     } catch (e) {
                       SmartDialog.showToast('导出失败');

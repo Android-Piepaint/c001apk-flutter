@@ -16,7 +16,7 @@ class Request {
   }
 
   Future<Response<dynamic>> get(
-    url, {
+    String url, {
     Map<String, dynamic>? queryParameters,
     Options? options,
     CancelToken? cancelToken,
@@ -31,7 +31,7 @@ class Request {
   }
 
   Future<Response<dynamic>> post(
-    url, {
+    String url, {
     Object? data,
     Map<String, dynamic>? queryParameters,
     Options? options,

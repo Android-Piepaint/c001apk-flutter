@@ -208,24 +208,25 @@ class _TopicPageState extends State<TopicPage> with TickerProviderStateMixin {
                     onSelected: (TopicMenuItem item) {
                       switch (item) {
                         case TopicMenuItem.Copy:
-                          Utils.copyText(Utils.getShareUrl(
+                          Utils.copyText(Utils.getShareUri(
                             _topicController.entityType == 'topic'
                                 ? _topicController.title!
                                 : _topicController.id!,
                             _topicController.entityType == 'topic'
                                 ? ShareType.t
                                 : ShareType.product,
-                          ));
+                          ).toString());
                           break;
                         case TopicMenuItem.Share:
-                          Share.share(Utils.getShareUrl(
+                          SharePlus.instance.share(ShareParams(
+                              uri: Utils.getShareUri(
                             _topicController.entityType == 'topic'
                                 ? _topicController.title!
                                 : _topicController.id!,
                             _topicController.entityType == 'topic'
                                 ? ShareType.t
                                 : ShareType.product,
-                          ));
+                          )));
                           break;
                         case TopicMenuItem.Sort:
                           _showPopupMenu();

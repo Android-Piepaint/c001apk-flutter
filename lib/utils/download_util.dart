@@ -109,9 +109,9 @@ class DownloadUtils {
         } else {
           final SaveResult result = await SaverGallery.saveImage(
             Uint8List.fromList(response.data),
-            name: picName,
+            fileName: picName,
             androidRelativePath: "Pictures/c001apk-flutter",
-            androidExistNotSave: true,
+            skipIfExists: true,
           );
 
           if (result.errorMessage != null) {

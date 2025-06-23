@@ -490,10 +490,12 @@ class _FeedPageState extends State<FeedPage> with TickerProviderStateMixin {
                         switch (item) {
                           case FeedMenuItem.Copy:
                             Utils.copyText(
-                                Utils.getShareUrl(_id, ShareType.feed));
+                                Utils.getShareUri(_id, ShareType.feed)
+                                    .toString());
                             break;
                           case FeedMenuItem.Share:
-                            Share.share(Utils.getShareUrl(_id, ShareType.feed));
+                            SharePlus.instance.share(ShareParams(
+                                uri: Utils.getShareUri(_id, ShareType.feed)));
                             break;
                           case FeedMenuItem.Fav:
                             if (_feedController.isFav) {

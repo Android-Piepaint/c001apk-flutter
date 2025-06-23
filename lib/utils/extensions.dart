@@ -176,7 +176,7 @@ extension NullableStringExt on String? {
     if (isNullOrBlank) {
       return '内容为空，取消操作'.toast();
     }
-    Share.share(this!);
+    SharePlus.instance.share(ShareParams(text: this!));
     // FlutterClipboard.copy(this!).then((_) => '尝试分享，并复制到剪切板'.toast());
   }
 }

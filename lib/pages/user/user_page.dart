@@ -241,12 +241,14 @@ class _UserPageState extends State<UserPage> {
                     onSelected: (UserMenuItem item) {
                       switch (item) {
                         case UserMenuItem.Copy:
-                          Utils.copyText(Utils.getShareUrl(
-                              _userController.uid, ShareType.u));
+                          Utils.copyText(Utils.getShareUri(
+                                  _userController.uid, ShareType.u)
+                              .toString());
                           break;
                         case UserMenuItem.Share:
-                          Share.share(Utils.getShareUrl(
-                              _userController.uid, ShareType.u));
+                          SharePlus.instance.share(ShareParams(
+                              uri: Utils.getShareUri(
+                                  _userController.uid, ShareType.u)));
                           break;
                         case UserMenuItem.Block:
                           GStorage.onBlock(
