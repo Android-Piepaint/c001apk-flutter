@@ -3,6 +3,8 @@ import 'dart:io';
 import 'package:flutter_smart_dialog/flutter_smart_dialog.dart';
 import 'package:path_provider/path_provider.dart';
 
+import 'utils.dart';
+
 /// From Pilipala
 class CacheManage {
   CacheManage._internal();
@@ -13,7 +15,9 @@ class CacheManage {
 
   static Future<Directory> getAppTempDirectory() async {
     Directory systemTempDirectory = await getTemporaryDirectory();
-    return Directory('${systemTempDirectory.path}/c001apk');
+    return Utils.isDesktop
+        ? Directory('${systemTempDirectory.path}/c001apk')
+        : systemTempDirectory;
   }
 
   // 获取缓存目录
