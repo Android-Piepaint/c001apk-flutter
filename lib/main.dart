@@ -12,6 +12,7 @@ import 'constants/constants.dart';
 import 'logic/network/request.dart';
 import 'router/app_pages.dart';
 import 'utils/storage_util.dart';
+import 'utils/utils.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -21,7 +22,7 @@ void main() async {
     DeviceOrientation.portraitDown,
   ]);
 
-  if (Platform.isWindows || Platform.isLinux || Platform.isMacOS) {
+  if (Utils.isDesktop) {
     await windowManager.ensureInitialized();
     WindowOptions windowOptions = WindowOptions(
       minimumSize: const Size(400, 700),
