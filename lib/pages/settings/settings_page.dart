@@ -122,19 +122,19 @@ class _SettingsPageState extends State<SettingsPage>
             defaultValue: true,
             forceAppUpdate: true,
           ),
-          DropDownMenuItem(
-            icon: Icons.format_color_fill,
-            title: 'Theme Color',
-            boxKey: SettingsBoxKey.staticColor,
-            items: Constants.themeType
-                .map((type) => DropdownMenuItem<int>(
-                      enabled: !GStorage.useMaterial,
-                      value: Constants.themeType.indexOf(type),
-                      child: Text(type),
-                    ))
-                .toList(),
-            forceAppUpdate: true,
-          ),
+          if (!GStorage.useMaterial)
+            DropDownMenuItem(
+              icon: Icons.format_color_fill,
+              title: 'Theme Color',
+              boxKey: SettingsBoxKey.staticColor,
+              items: Constants.themeType
+                  .map((type) => DropdownMenuItem<int>(
+                        value: Constants.themeType.indexOf(type),
+                        child: Text(type),
+                      ))
+                  .toList(),
+              forceAppUpdate: true,
+            ),
           const DropDownMenuItem(
             icon: Icons.dark_mode_outlined,
             title: 'Dark Mode',
