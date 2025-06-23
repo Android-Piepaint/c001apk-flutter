@@ -170,7 +170,7 @@ class UserInfoCard extends StatelessWidget {
               GestureDetector(
                 onTap: () => Utils.copyText(data.uid.toString()),
                 child: Text(
-                  'uid: ${data.uid.toString()}',
+                  'UID: ${data.uid.toString()}',
                   style: const TextStyle(
                     fontSize: 14,
                   ),
@@ -207,18 +207,20 @@ class UserInfoCard extends StatelessWidget {
           padding: const EdgeInsets.only(left: 20, top: 4, right: 20),
           child: Row(
             children: [
-              Text(
-                '${data.feed.toString()}动态',
-                style: const TextStyle(fontSize: 14),
-              ),
-              const SizedBox(width: 10),
-              Text(
-                '${data.beLikeNum.toString()}赞',
-                style: const TextStyle(
-                  fontSize: 14,
+              Text.rich(
+                TextSpan(
+                  children: [
+                    TextSpan(
+                        text: '${data.feed.toString()} ',
+                        style: TextStyle(fontWeight: FontWeight.bold)),
+                    TextSpan(text: '动态   '),
+                    TextSpan(
+                        text: '${data.beLikeNum.toString()} ',
+                        style: TextStyle(fontWeight: FontWeight.bold)),
+                    TextSpan(text: '赞   '),
+                  ],
                 ),
               ),
-              const SizedBox(width: 10),
               GestureDetector(
                 onTap: () => Get.toNamed(
                   '/ffflist',
@@ -227,12 +229,15 @@ class UserInfoCard extends StatelessWidget {
                     'uid': data.uid.toString(),
                   },
                 ),
-                child: Text(
-                  '${data.follow.toString()}关注',
-                  style: const TextStyle(fontSize: 14),
-                ),
+                child: Text.rich(TextSpan(
+                  children: [
+                    TextSpan(
+                        text: '${data.follow.toString()} ',
+                        style: TextStyle(fontWeight: FontWeight.bold)),
+                    TextSpan(text: '关注   '),
+                  ],
+                )),
               ),
-              const SizedBox(width: 10),
               GestureDetector(
                 onTap: () => Get.toNamed(
                   '/ffflist',
@@ -241,10 +246,14 @@ class UserInfoCard extends StatelessWidget {
                     'uid': data.uid.toString(),
                   },
                 ),
-                child: Text(
-                  '${data.fans.toString()}粉丝',
-                  style: const TextStyle(fontSize: 14),
-                ),
+                child: Text.rich(TextSpan(
+                  children: [
+                    TextSpan(
+                        text: '${data.fans.toString()} ',
+                        style: TextStyle(fontWeight: FontWeight.bold)),
+                    TextSpan(text: '粉丝'),
+                  ],
+                )),
               ),
             ],
           ),
