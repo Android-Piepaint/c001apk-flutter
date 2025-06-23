@@ -170,7 +170,7 @@ class UserInfoCard extends StatelessWidget {
               GestureDetector(
                 onTap: () => Utils.copyText(data.uid.toString()),
                 child: Text(
-                  'UID: ${data.uid.toString()}',
+                  'UID: ${data.uid}',
                   style: const TextStyle(
                     fontSize: 14,
                   ),
@@ -205,17 +205,21 @@ class UserInfoCard extends StatelessWidget {
         ),
         Padding(
           padding: const EdgeInsets.only(left: 20, top: 4, right: 20),
+          child: Text((data.bio?.isEmpty ?? true) ? '这个人很懒，什么都没写' : data.bio!),
+        ),
+        Padding(
+          padding: const EdgeInsets.only(left: 20, top: 4, right: 20),
           child: Row(
             children: [
               Text.rich(
                 TextSpan(
                   children: [
                     TextSpan(
-                        text: '${data.feed.toString()} ',
+                        text: '${data.feed} ',
                         style: TextStyle(fontWeight: FontWeight.bold)),
                     TextSpan(text: '动态   '),
                     TextSpan(
-                        text: '${data.beLikeNum.toString()} ',
+                        text: '${data.beLikeNum} ',
                         style: TextStyle(fontWeight: FontWeight.bold)),
                     TextSpan(text: '赞   '),
                   ],
@@ -232,7 +236,7 @@ class UserInfoCard extends StatelessWidget {
                 child: Text.rich(TextSpan(
                   children: [
                     TextSpan(
-                        text: '${data.follow.toString()} ',
+                        text: '${data.follow} ',
                         style: TextStyle(fontWeight: FontWeight.bold)),
                     TextSpan(text: '关注   '),
                   ],
@@ -249,7 +253,7 @@ class UserInfoCard extends StatelessWidget {
                 child: Text.rich(TextSpan(
                   children: [
                     TextSpan(
-                        text: '${data.fans.toString()} ',
+                        text: '${data.fans} ',
                         style: TextStyle(fontWeight: FontWeight.bold)),
                     TextSpan(text: '粉丝'),
                   ],
@@ -259,14 +263,19 @@ class UserInfoCard extends StatelessWidget {
           ),
         ),
         Padding(
-          padding: const EdgeInsets.only(left: 20, top: 4, right: 20),
-          child: Text(
-            '${DateUtil.fromToday(data.logintime)}活跃',
-            style: const TextStyle(
-              fontSize: 14,
-            ),
-          ),
-        ),
+            padding: const EdgeInsets.only(left: 20, top: 4, right: 20),
+            child: Row(
+              children: [
+                Icon(data.gender == 1 ? Icons.male : Icons.female, size: 20.0),
+                SizedBox(width: 5),
+                Text(
+                  '${DateUtil.fromToday(data.logintime)}活跃',
+                  style: const TextStyle(
+                    fontSize: 14,
+                  ),
+                ),
+              ],
+            )),
       ],
     );
   }
