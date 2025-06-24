@@ -1,8 +1,6 @@
 import 'dart:async';
 import 'dart:io';
 
-import 'package:android_intent_plus/android_intent.dart';
-import 'package:android_intent_plus/flag.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
@@ -48,16 +46,7 @@ class _MainPageState extends State<MainPage> {
     if (_selectedIndex != 0) {
       onDestinationSelected(0);
     } else {
-      if (Platform.isAndroid) {
-        AndroidIntent intent = const AndroidIntent(
-          action: 'android.intent.action.MAIN',
-          flags: [Flag.FLAG_ACTIVITY_NEW_TASK],
-          category: 'android.intent.category.HOME',
-        );
-        await intent.launch();
-      } else {
-        SystemNavigator.pop();
-      }
+      SystemNavigator.pop();
     }
   }
 
