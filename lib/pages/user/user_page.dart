@@ -283,7 +283,7 @@ class _UserPageState extends State<UserPage> {
                                 ),
                                 content: Text(
                                   '''
-                                      |uid: ${user.uid}\n
+                                      |UID: ${user.uid}\n
                                       |等级: Lv.${user.level}\n
                                       |性别: ${user.gender == 1 ? '男' : user.gender == 0 ? '女' : '未知'}\n
                                       |注册时长: ${((DateTime.now().microsecondsSinceEpoch ~/ 10e5 - user.regdate!) ~/ 24 ~/ 3600)} 天\n
