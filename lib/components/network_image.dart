@@ -1,5 +1,8 @@
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:gif_view/gif_view.dart';
 import 'package:flutter/material.dart';
+
+import '../constants/constants.dart';
 
 Widget networkImage(
   String imageUrl, {
@@ -30,17 +33,27 @@ Widget networkImage(
     );
   }
 
-  return CachedNetworkImage(
-    fit: fit,
-    width: width,
-    height: height,
-    imageUrl: imageUrl,
-    imageBuilder: imageBuilder,
-    placeholder: (context, url) => placeHolder(context),
-    errorWidget: (context, url, error) => placeHolder(context),
-    fadeOutDuration: const Duration(milliseconds: 200),
-    fadeInDuration: const Duration(milliseconds: 200),
-  );
+  return imageUrl.endsWith(Constants.SUFFIX_GIF)
+      ? GifView.network(
+          imageUrl,
+          fit: fit,
+          width: width,
+          height: height,
+          errorBuilder: (context, url, error) => placeHolder(context),
+          fadeDuration: const Duration(milliseconds: 200),
+          loop: false,
+        )
+      : CachedNetworkImage(
+          fit: fit,
+          width: width,
+          height: height,
+          imageUrl: imageUrl,
+          imageBuilder: imageBuilder,
+          placeholder: (context, url) => placeHolder(context),
+          errorWidget: (context, url, error) => placeHolder(context),
+          fadeOutDuration: const Duration(milliseconds: 200),
+          fadeInDuration: const Duration(milliseconds: 200),
+        );
 }
 
 Widget clipNetworkImage(
