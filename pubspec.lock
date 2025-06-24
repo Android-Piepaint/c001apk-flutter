@@ -709,14 +709,6 @@ packages:
       url: "https://pub.flutter-io.cn"
     source: hosted
     version: "0.2.1+1"
-  indent:
-    dependency: "direct main"
-    description:
-      name: indent
-      sha256: "819319a5c185f7fe412750c798953378b37a0d0d32564ce33e7c5acfd1372d2a"
-      url: "https://pub.flutter-io.cn"
-    source: hosted
-    version: "2.0.0"
   intl:
     dependency: "direct main"
     description:
