@@ -263,19 +263,18 @@ class UserInfoCard extends StatelessWidget {
           ),
         ),
         Padding(
-            padding: const EdgeInsets.only(left: 20, top: 4),
-            child: Row(
-              children: [
-                Icon(data.gender == 1 ? Icons.male : Icons.female, size: 20.0),
-                SizedBox(width: 5),
-                Text(
-                  '${DateUtil.fromToday(data.logintime)}活跃',
-                  style: const TextStyle(
-                    fontSize: 14,
-                  ),
-                ),
-              ],
-            )),
+          padding: const EdgeInsets.only(left: 20, top: 4),
+          child: (data.gender == 0 || data.gender == 1)
+              ? Row(
+                  children: [
+                    Icon(data.gender == 1 ? Icons.male : Icons.female,
+                        size: 20.0),
+                    SizedBox(width: 5),
+                    Text('${DateUtil.fromToday(data.logintime)}活跃'),
+                  ],
+                )
+              : Text('${DateUtil.fromToday(data.logintime)}活跃'),
+        ),
       ],
     );
   }
