@@ -40,7 +40,7 @@ class _DropDownMenuItemState extends State<DropDownMenuItem> {
       trailing: DropdownButton<int>(
         value: value,
         onChanged: (int? newValue) {
-          if (newValue != null) {
+          if (newValue != null && newValue != value) {
             GStorage.settings.put(widget.boxKey, newValue);
             setState(() => value = newValue);
             if (widget.forceAppUpdate) {

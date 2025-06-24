@@ -122,8 +122,9 @@ class _SettingsPageState extends State<SettingsPage>
             defaultValue: true,
             forceAppUpdate: true,
           ),
-          if (!GStorage.useMaterial)
-            DropDownMenuItem(
+          Visibility(
+            visible: !GStorage.useMaterial,
+            child: DropDownMenuItem(
               icon: Icons.format_color_fill,
               title: 'Theme Color',
               boxKey: SettingsBoxKey.staticColor,
@@ -135,6 +136,7 @@ class _SettingsPageState extends State<SettingsPage>
                   .toList(),
               forceAppUpdate: true,
             ),
+          ),
           const DropDownMenuItem(
             icon: Icons.dark_mode_outlined,
             title: 'Dark Mode',
