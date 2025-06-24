@@ -54,8 +54,8 @@ jobs:
           path: build/windows/x64/runner/Release/
           compression-level: 9
 
-  build-linux:
-    name: Build Linux
+  build-linux-x64:
+    name: Build Linux x86-64
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -75,8 +75,33 @@ jobs:
       - name: Upload
         uses: actions/upload-artifact@v4
         with:
-          name: Linux
+          name: Linux x86-64
           path: build/linux/x64/release/bundle/
+          compression-level: 9
+
+  build-linux-arm64:
+    name: Build Linux arm64
+    runs-on: ubuntu-24.04-arm
+    steps:
+      - uses: actions/checkout@v4
+      - uses: subosito/flutter-action@v2
+        with:
+          cache: true
+
+      - name: Install dependencies
+        run: |
+          sudo apt update -y
+          sudo apt install -y libgtk-3-dev
+          flutter pub get
+
+      - name: Build
+        run: flutter build linux --release
+
+      - name: Upload
+        uses: actions/upload-artifact@v4
+        with:
+          name: Linux ARM64
+          path: build/linux/arm64/release/bundle/
           compression-level: 9
 
   build-macos:
