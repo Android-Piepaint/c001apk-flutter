@@ -83,6 +83,8 @@ Widget buildBody(
     case Success():
       var dataList = (commonController.loadingState.value as Success).response
           as List<Datum>;
+
+      var bottomPadding = MediaQuery.of(Get.context!).padding.bottom;
       return ListView.separated(
         controller: commonController.scrollController,
         physics: AlwaysScrollableScrollPhysics(
@@ -90,12 +92,10 @@ Widget buildBody(
               ? const ClampingScrollPhysics()
               : const BouncingScrollPhysics(),
         ),
-        padding: EdgeInsets.only(
-            left: isReply2Reply ? 0 : 10,
-            top: isReply2Reply ? 0 : 10,
-            right: isReply2Reply ? 0 : 10,
-            bottom: (isReply2Reply ? 0 : 10) +
-                MediaQuery.of(Get.context!).padding.bottom),
+        padding: isReply2Reply
+            ? EdgeInsets.only(bottom: bottomPadding)
+            : EdgeInsets.only(
+                left: 10, top: 10, right: 10, bottom: 10 + bottomPadding),
         itemCount: dataList.length + 1,
         itemBuilder: (_, index) {
           if (index == dataList.length) {
