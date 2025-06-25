@@ -18,7 +18,6 @@ class SliderDialog extends StatefulWidget {
 
 class _SliderDialogState extends State<SliderDialog> {
   late double _fontScale;
-  final _scale = [0.8, 0.85, 0.9, 0.95, 1.0, 1.05, 1.1, 1.15, 1.2, 1.25, 1.3];
 
   @override
   void initState() {
@@ -34,15 +33,14 @@ class _SliderDialogState extends State<SliderDialog> {
         mainAxisSize: MainAxisSize.min,
         children: [
           Slider(
-            min: _scale.first,
-            max: _scale.last,
+            min: 0.5,
+            max: 2.0,
             value: _fontScale,
-            divisions: _scale.length - 1,
             secondaryTrackValue: 1,
             onChanged: (value) => setState(() => _fontScale = value),
           ),
           Text(
-            'Font Size: ${_fontScale.toStringAsFixed(2)}',
+            'Font Size: ${_fontScale.toStringAsFixed(2)}x',
             style: TextStyle(fontSize: 15 * _fontScale),
           )
         ],
