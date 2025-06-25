@@ -356,6 +356,8 @@ class Utils {
       return '${difference.inHours}小时前';
     } else if (difference.inMinutes > 0) {
       return '${difference.inMinutes}分钟前';
+    } else if (difference.inSeconds > 0) {
+      return '${difference.inSeconds}秒前';
     } else {
       return '刚刚';
     }
@@ -383,8 +385,10 @@ class Utils {
           formatType: formatType);
     }
     debugPrint('distance: $distance');
-    if (distance <= 60) {
+    if (distance == 0) {
       return '刚刚';
+    } else if (distance < 60) {
+      return '$distance秒前';
     } else if (distance <= 3600) {
       return '${(distance / 60).floor()}分钟前';
     } else if (distance <= 43200) {
