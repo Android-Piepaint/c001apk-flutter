@@ -312,10 +312,6 @@ class Utils {
   }
 
   static String numFormat(num number) {
-    if (number == null) {
-      return '0';
-    }
-
     final String res = (number / 10000).toString();
     if (int.parse(res.split('.')[0]) >= 1) {
       return '${(number / 10000).toStringAsFixed(1)}万';
