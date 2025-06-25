@@ -67,6 +67,7 @@ dependencies:
   uuid: ^4.4.2
   window_manager: ^0.5.0
   gif_view: ^1.0.3
+  cupertino_icons: ^1.0.8
 
 dev_dependencies:
   flutter_test:
