@@ -64,7 +64,7 @@ class Utils {
     return Uri.https('www.coolapk1s.com', '${type.name}/$id');
   }
 
-  static void report(dynamic id, ReportType reportType) {
+  static void report(String id, ReportType reportType) {
     String c = reportType == ReportType.User ? 'user' : 'feed';
     String type = switch (reportType) {
       ReportType.Feed => '&type=feed',
@@ -311,13 +311,11 @@ class Utils {
     }
   }
 
-  static String numFormat(dynamic number) {
+  static String numFormat(num number) {
     if (number == null) {
       return '0';
     }
-    if (number is String) {
-      return number;
-    }
+
     final String res = (number / 10000).toString();
     if (int.parse(res.split('.')[0]) >= 1) {
       return '${(number / 10000).toStringAsFixed(1)}万';
@@ -326,11 +324,8 @@ class Utils {
     }
   }
 
-  static String timeFormat(dynamic time) {
+  static String timeFormat(int time) {
     // 1小时内
-    if (time is String && time.contains(':')) {
-      return time;
-    }
     if (time < 3600) {
       if (time == 0) {
         return '00:00';
@@ -424,8 +419,8 @@ class Utils {
     String timeStr =
         (DateTime.fromMillisecondsSinceEpoch(timestamp * 1000)).toString();
 
-    dynamic dateArr = timeStr.split(' ')[0];
-    dynamic timeArr = timeStr.split(' ')[1];
+    var dateArr = timeStr.split(' ')[0];
+    var timeArr = timeStr.split(' ')[1];
 
     var [year, month, day] = dateArr.split('-');
     var [hour, minute, second] = timeArr.split(':');
