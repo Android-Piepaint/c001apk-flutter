@@ -7,6 +7,7 @@ import '../../pages/home/app/app_list_page.dart';
 import '../../pages/home/feed/home_feed_page.dart';
 import '../../pages/home/return_top_controller.dart';
 import '../../pages/home/topic/home_topic_page.dart';
+import '../../utils/utils.dart';
 
 // ignore: constant_identifier_names
 enum TabType { FOLLOW, APP, FEED, HOT, TOPIC, PRODUCT, COOLPIC, NONE }
@@ -87,6 +88,9 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
               scrollToTop(index);
             }
           },
+          tabAlignment: Utils.isWideLandscape(context)
+              ? TabAlignment.center
+              : TabAlignment.startOffset,
         ),
         actions: [
           IconButton(
