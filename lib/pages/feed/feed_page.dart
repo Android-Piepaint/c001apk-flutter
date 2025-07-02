@@ -532,7 +532,7 @@ class _FeedPageState extends State<FeedPage> with TickerProviderStateMixin {
                                     : item == FeedMenuItem.Block
                                         ? Text(
                                             _feedController.isBlocked
-                                                ? 'UnBlock'
+                                                ? 'Unblock'
                                                 : 'Block',
                                           )
                                         : Text(item.name),
