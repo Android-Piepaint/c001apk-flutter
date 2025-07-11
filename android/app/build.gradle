@@ -19,7 +19,7 @@ def _keyPassword = System.getenv("KEY_PASSWORD") ?: keystoreProperties["keyPassw
 
 android {
     namespace = "com.example.c001apk.flutter"
-    compileSdk = 35
+    compileSdk = flutter.compileSdkVersion
     ndkVersion = flutter.ndkVersion
 
     compileOptions {
