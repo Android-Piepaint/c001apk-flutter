@@ -10,8 +10,8 @@ class Request {
 
   Request._internal() {
     dio = Dio()
-      ..options.connectTimeout = const Duration(milliseconds: 5000)
-      ..options.receiveTimeout = const Duration(milliseconds: 5000)
+      ..options.connectTimeout = const Duration(milliseconds: 10000)
+      ..options.receiveTimeout = const Duration(milliseconds: 10000)
       ..interceptors.add(ApiInterceptor());
   }
 
