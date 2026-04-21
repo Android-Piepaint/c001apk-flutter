@@ -7,6 +7,7 @@ import 'package:flutter_smart_dialog/flutter_smart_dialog.dart';
 import 'package:get/get.dart';
 import 'package:window_manager/window_manager.dart';
 
+
 import '../../flutter/packages/flutter/lib/material.dart';
 import 'components/custom_toast.dart';
 import 'constants/constants.dart';
@@ -87,6 +88,7 @@ class C001APKAPP extends StatelessWidget {
       return GetMaterialApp(
         title: 'c001apk',
         theme: ThemeData(
+          fontFamily: 'AppFont',
           colorScheme: selectedTheme == 2 ? darkColorScheme : lightColorScheme,
           useMaterial3: true,
           navigationBarTheme: NavigationBarThemeData(
@@ -124,10 +126,56 @@ class C001APKAPP extends StatelessWidget {
             refreshBackgroundColor: lightColorScheme.onSecondary,
           ),
         ),
-        
+        darkTheme: ThemeData(
+          colorScheme: selectedTheme == 1 ? lightColorScheme : darkColorScheme,
+          useMaterial3: true,
+          navigationBarTheme: NavigationBarThemeData(
+              surfaceTintColor: (lightDynamic != null && useMaterial)
+                  ? darkColorScheme.surfaceTint
+                  : darkColorScheme.surfaceContainer),
+          snackBarTheme: SnackBarThemeData(
+            actionTextColor: darkColorScheme.primary,
+            backgroundColor: darkColorScheme.secondaryContainer,
+            closeIconColor: darkColorScheme.secondary,
+            contentTextStyle: TextStyle(color: darkColorScheme.secondary),
+            elevation: 20,
+          ),
+          popupMenuTheme: PopupMenuThemeData(
+            surfaceTintColor: darkColorScheme.surfaceTint,
+          ),
+          cardTheme: CardThemeData(
+            surfaceTintColor: darkColorScheme.surfaceTint,
+            shadowColor: Colors.transparent,
+          ),
+          dialogTheme: DialogThemeData(
+            surfaceTintColor: darkColorScheme.surfaceTint,
+          ),
+          inputDecorationTheme: InputDecorationTheme(
+            fillColor: darkColorScheme.onInverseSurface,
+          ),
+          progressIndicatorTheme: ProgressIndicatorThemeData(
+            refreshBackgroundColor: darkColorScheme.onSecondary,
+          ),
+        ),
+        themeMode: GStorage.getThemeMode(),
+        getPages: AppPages.getPages,
+        initialRoute: '/',
+        builder: (BuildContext context, Widget? child) {
+          return FlutterSmartDialog(
+            toastBuilder: (String msg) => CustomToast(msg: msg),
+            child: MediaQuery(
+              data: MediaQuery.of(context)
+                  .copyWith(textScaler: TextScaler.linear(fontScale)),
+              child: child!,
+            ),
+          );
+        },
+      );
     });
   }
 }
+
+
 
 class CustomHttpOverrides extends HttpOverrides {
   @override
