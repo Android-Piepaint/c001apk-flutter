@@ -8,6 +8,7 @@ import 'package:get/get.dart';
 import 'package:window_manager/window_manager.dart';
 
 import 'components/custom_toast.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'constants/constants.dart';
 import 'logic/network/request.dart';
 import 'router/app_pages.dart';
@@ -86,8 +87,11 @@ class C001APKAPP extends StatelessWidget {
       return GetMaterialApp(
         title: 'c001apk',
         theme: ThemeData(
+          textTheme: GoogleFonts.notoSansTcTextTheme(
+            Theme.of(context).textTheme,
+          ),
           colorScheme: selectedTheme == 2 ? darkColorScheme : lightColorScheme,
-          useMaterial3: true,
+          useMaterial3: false,
           navigationBarTheme: NavigationBarThemeData(
               surfaceTintColor: (lightDynamic != null && useMaterial)
                   ? lightColorScheme.surfaceTint
