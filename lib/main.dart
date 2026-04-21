@@ -7,8 +7,6 @@ import 'package:flutter_smart_dialog/flutter_smart_dialog.dart';
 import 'package:get/get.dart';
 import 'package:window_manager/window_manager.dart';
 
-
-import '../../flutter/packages/flutter/lib/material.dart';
 import 'components/custom_toast.dart';
 import 'constants/constants.dart';
 import 'logic/network/request.dart';
