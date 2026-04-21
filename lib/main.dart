@@ -24,7 +24,7 @@ void main() async {
       minimumSize: const Size(400, 700),
       center: true,
       skipTaskbar: false,
-      title: 'c001apk',
+      title: 'Pieapk',
       titleBarStyle:
           Platform.isMacOS ? TitleBarStyle.hidden : TitleBarStyle.normal,
     );
@@ -85,11 +85,14 @@ class C001APKAPP extends StatelessWidget {
       }
 
       return GetMaterialApp(
-        title: 'c001apk',
+        title: 'Pieapk',
         theme: ThemeData(
-          textTheme: GoogleFonts.notoSansTcTextTheme(
-            Theme.of(context).textTheme,
+          fontFamily: 'AppFont',
+          textTheme: const TextTheme(
+            bodyMedium: TextStyle(fontFamily: 'AppFont'),
+            bodyLarge: TextStyle(fontFamily: 'AppFont'),
           ),
+        ),
           colorScheme: selectedTheme == 2 ? darkColorScheme : lightColorScheme,
           useMaterial3: false,
           navigationBarTheme: NavigationBarThemeData(
