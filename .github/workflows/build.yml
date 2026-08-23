@@ -1,6 +1,9 @@
 name: Build
 
 on:
+  workflow_dispatch:
+  schedule:
+    - cron: '0 8 * * 5'
   push:
     paths-ignore:
       - "README.md"
@@ -47,6 +50,7 @@ jobs:
       - name: Create GitHub Release and Upload Artifacts
         uses: softprops/action-gh-release@v2
         with:
+          tag_name: v1.0.${{ github.run_number }}
           files: dist/my-app-binary
           draft: false
           prerelease: false
@@ -107,6 +111,7 @@ jobs:
       - name: Create GitHub Release and Upload Artifacts
         uses: softprops/action-gh-release@v2
         with:
+          tag_name: v1.0.${{ github.run_number }}
           files: dist/my-app-binary
           draft: false
           prerelease: false
@@ -143,6 +148,7 @@ jobs:
       - name: Create GitHub Release and Upload Artifacts
         uses: softprops/action-gh-release@v2
         with:
+          tag_name: v1.0.${{ github.run_number }}
           files: dist/my-app-binary
           draft: false
           prerelease: false
@@ -179,6 +185,7 @@ jobs:
       - name: Create GitHub Release and Upload Artifacts
         uses: softprops/action-gh-release@v2
         with:
+          tag_name: v1.0.${{ github.run_number }}
           files: dist/my-app-binary
           draft: false
           prerelease: false
