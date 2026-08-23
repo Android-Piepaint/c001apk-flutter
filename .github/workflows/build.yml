@@ -43,7 +43,20 @@ jobs:
         with:
           name: Android x86-64
           path: build/app/outputs/flutter-apk/app-x86_64-release.apk
+          
+      - name: Create GitHub Release and Upload Artifacts
+        uses: softprops/action-gh-release@v2
+        with:
+          files: dist/my-app-binary
+          draft: false
+          prerelease: false
+          generate_release_notes: true
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
+
+
+      
   build-windows:
     name: Build Windows
     runs-on: windows-latest
@@ -91,6 +104,16 @@ jobs:
           path: build/linux/x64/release/bundle/
           compression-level: 9
 
+      - name: Create GitHub Release and Upload Artifacts
+        uses: softprops/action-gh-release@v2
+        with:
+          files: dist/my-app-binary
+          draft: false
+          prerelease: false
+          generate_release_notes: true
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      
   build-linux-arm64:
     name: Build Linux ARM64
     runs-on: ubuntu-22.04-arm
@@ -117,6 +140,17 @@ jobs:
           path: build/linux/arm64/release/bundle/
           compression-level: 9
 
+      - name: Create GitHub Release and Upload Artifacts
+        uses: softprops/action-gh-release@v2
+        with:
+          files: dist/my-app-binary
+          draft: false
+          prerelease: false
+          generate_release_notes: true
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+
   build-macos:
     name: Build macOS
     runs-on: macos-latest
@@ -141,3 +175,13 @@ jobs:
         with:
           name: macOS
           path: c001apk.dmg
+
+      - name: Create GitHub Release and Upload Artifacts
+        uses: softprops/action-gh-release@v2
+        with:
+          files: dist/my-app-binary
+          draft: false
+          prerelease: false
+          generate_release_notes: true
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
