@@ -122,7 +122,7 @@ jobs:
 
   publish-release:
     name: Create Release & Upload All Artifacts
-    needs: [build-android, build-windows, build-linux-x64, build-linux-arm64, build-macos]
+    needs: [build-android, build-linux-x64, build-linux-arm64, build-macos]
     runs-on: ubuntu-latest
     steps:
       - name: Download all build artifacts
